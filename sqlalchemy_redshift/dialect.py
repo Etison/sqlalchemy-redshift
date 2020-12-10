@@ -825,7 +825,7 @@ class RedshiftDialect(PGDialect_psycopg2):
           ON t.conrelid = c.oid
         JOIN pg_catalog.pg_attribute a
           ON t.conrelid = a.attrelid AND a.attnum = ANY(t.conkey)
-        WHERE n.nspname !~ '^pg_'
+        WHERE n.nspname IN ('mothership', 'cfbi')
         ORDER BY n.nspname, c.relname
         """)
         all_constraints = defaultdict(list)
